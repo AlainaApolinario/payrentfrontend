@@ -7,14 +7,8 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
+  background-color: #1e293b; /* Updated to a darker shade for a modern look */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -25,7 +19,12 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #3b82f6; /* Updated to a modern blue */
+  text-decoration: none;
+}
+
+.App-link:hover {
+  text-decoration: underline;
 }
 
 @keyframes App-logo-spin {
@@ -34,5 +33,15 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .App-header {
+    font-size: calc(8px + 2vmin); /* Adjust font size for smaller screens */
+  }
+
+  .App-logo {
+    height: 30vmin; /* Reduce logo size on smaller screens */
   }
 }
