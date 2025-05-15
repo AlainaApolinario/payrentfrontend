@@ -16,7 +16,7 @@ const LoginForm = ({ onLogin }) => {
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
       axiosInstance.defaults.headers['Authorization'] = `Bearer ${response.data.access}`;
-      onLogin(); // Call the onLogin prop to update the app state
+      onLogin();
     } catch (error) {
       console.error('Login failed:', error);
       setError('Login failed. Please check your username and password.');
@@ -31,7 +31,7 @@ const LoginForm = ({ onLogin }) => {
         {/* Left Section */}
         <div className="w-1/2 flex flex-col items-center justify-center">
           <img
-            src="/pic.jpg" // Replace with the actual path to your image
+            src="/pic.jpg"
             alt="Rental Payment Tracking System"
             className="w-3/4 mb-6"
           />
@@ -72,9 +72,13 @@ const LoginForm = ({ onLogin }) => {
             </div>
 
             <div className="text-right">
-              <a href="#" className="text-sm text-white hover:underline">
+              <button
+                type="button"
+                onClick={() => alert('Forgot password functionality not implemented yet')}
+                className="text-sm text-white hover:underline bg-transparent border-none p-0 underline cursor-pointer"
+              >
                 Forgot Password
-              </a>
+              </button>
             </div>
 
             {error && <div className="text-red-500 text-sm">{error}</div>}

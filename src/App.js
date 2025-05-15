@@ -1,12 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+// Components
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import Rooms from './components/Rooms';
 import Dashboard from './components/Dashboard';
 import ViewAccounts from './components/ViewAccounts';
-import Reports from './components/Reports'; // Import Reports component
-import Notifications from './components/Notifications'; // Import Notifications component
+import Reports from './components/Reports';
+import Notifications from './components/Notifications';
+
+// Icons
+import {
+  FaTachometerAlt,
+  FaHome,
+  FaUsers,
+  FaFileAlt,
+  FaBell,
+  FaSignOutAlt,
+  FaBars
+} from 'react-icons/fa';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,6 +27,7 @@ function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
 
+  // Load login state from localStorage
   useEffect(() => {
     const storedLoginState = localStorage.getItem('isLoggedIn');
     if (storedLoginState === 'true') {
@@ -31,6 +45,7 @@ function App() {
     localStorage.removeItem('isLoggedIn');
   };
 
+  // Render the current active page
   const renderPage = () => {
     switch (currentPage) {
       case 'dashboard':
@@ -39,9 +54,9 @@ function App() {
         return <Rooms onLogout={handleLogout} />;
       case 'accounts':
         return <ViewAccounts />;
-      case 'reports': // Add Reports case
+      case 'reports':
         return <Reports />;
-      case 'notifications': // Add Notifications case
+      case 'notifications':
         return <Notifications />;
       default:
         return <Dashboard />;
@@ -59,13 +74,13 @@ function App() {
                 isSidebarCollapsed ? 'w-16' : 'w-64'
               } bg-blue-700 text-white flex flex-col transition-all duration-300`}
             >
-              {/* Toggle Button */}
+              {/* Collapse/Expand Button */}
               <div className="p-4">
                 <button
                   onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
                   className="focus:outline-none"
                 >
-                  <i className="fas fa-bars"></i>
+                  <FaBars />
                 </button>
               </div>
 
@@ -75,46 +90,46 @@ function App() {
                   onClick={() => setCurrentPage('dashboard')}
                   className="flex items-center space-x-2 hover:bg-blue-600 p-2 rounded w-full text-left"
                 >
-                  <i className="fas fa-tachometer-alt"></i>
+                  <FaTachometerAlt />
                   {!isSidebarCollapsed && <span>Dashboard</span>}
                 </button>
                 <button
                   onClick={() => setCurrentPage('rooms')}
                   className="flex items-center space-x-2 hover:bg-blue-600 p-2 rounded w-full text-left"
                 >
-                  <i className="fas fa-home"></i>
+                  <FaHome />
                   {!isSidebarCollapsed && <span>Rooms</span>}
                 </button>
                 <button
                   onClick={() => setCurrentPage('accounts')}
                   className="flex items-center space-x-2 hover:bg-blue-600 p-2 rounded w-full text-left"
                 >
-                  <i className="fas fa-users"></i>
+                  <FaUsers />
                   {!isSidebarCollapsed && <span>View Accounts</span>}
                 </button>
                 <button
-                  onClick={() => setCurrentPage('reports')} // Add Reports navigation
+                  onClick={() => setCurrentPage('reports')}
                   className="flex items-center space-x-2 hover:bg-blue-600 p-2 rounded w-full text-left"
                 >
-                  <i className="fas fa-file-alt"></i>
+                  <FaFileAlt />
                   {!isSidebarCollapsed && <span>Reports</span>}
                 </button>
                 <button
-                  onClick={() => setCurrentPage('notifications')} // Add Notifications navigation
+                  onClick={() => setCurrentPage('notifications')}
                   className="flex items-center space-x-2 hover:bg-blue-600 p-2 rounded w-full text-left"
                 >
-                  <i className="fas fa-bell"></i>
+                  <FaBell />
                   {!isSidebarCollapsed && <span>Notifications</span>}
                 </button>
               </nav>
 
-              {/* Logout Button */}
-              <div className="p-4 mt-auto">
+              {/* Logout */}
+              <div className="p-14 mt-12">
                 <button
                   onClick={handleLogout}
                   className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 p-2 rounded w-full text-left"
                 >
-                  <i className="fas fa-sign-out-alt"></i>
+                  <FaSignOutAlt />
                   {!isSidebarCollapsed && <span>Log out</span>}
                 </button>
               </div>
@@ -131,7 +146,7 @@ function App() {
           <LoginForm onLogin={handleLogin} />
         )}
 
-        {/* Toggle Between Login and Sign Up */}
+        {/* Login/Signup Toggle */}
         {!isLoggedIn && (
           <div className="text-center mt-8">
             {isSignUp ? (
