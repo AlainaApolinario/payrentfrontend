@@ -60,7 +60,7 @@ const Rooms = () => {
 
   const fetchRooms = async () => {
     try {
-      const response = await axiosInstance.get('rooms/');
+      const response = await axiosInstance.get('/api/rooms/');
       console.log('Fetched rooms:', response.data);
       setRooms(response.data);
     } catch (error) {
@@ -146,7 +146,7 @@ axiosInstance.get(`rooms/${roomId}/tenants/`)
       if (editingRoomId) {
         await axiosInstance.put(`rooms/${editingRoomId}/`, sanitizedRoom);
       } else {
-        await axiosInstance.post('rooms/', sanitizedRoom);
+        await axiosInstance.post('/api/rooms/', sanitizedRoom);
       }
       console.log('Room saved successfully');
       setShowRoomModal(false);
