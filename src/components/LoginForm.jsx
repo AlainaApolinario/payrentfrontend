@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axiosInstance from '../api/axios';
+import pic from '../assets/pic.jpg';
 
 const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState('');
@@ -12,15 +13,17 @@ const LoginForm = ({ onLogin }) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await axiosInstance.post('token/', { username, password });
+      const response = await axiosInstance.post('/api/token/', {
+        username, // Ensure this is the correct variable
+        password, // Ensure this is the correct variable
+      });
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
-      axiosInstance.defaults.headers['Authorization'] = `Bearer ${response.data.access}`;
-      onLogin();
+      setIsLoading(false);
+      onLogin(); // Call the onLogin prop if needed
     } catch (error) {
       console.error('Login failed:', error);
-      setError('Login failed. Please check your username and password.');
-    } finally {
+      setError('Invalid username or password');
       setIsLoading(false);
     }
   };
@@ -31,7 +34,7 @@ const LoginForm = ({ onLogin }) => {
         {/* Left Section */}
         <div className="w-1/2 flex flex-col items-center justify-center">
           <img
-            src="/pic.jpg"
+            src={pic}
             alt="Rental Payment Tracking System"
             className="w-3/4 mb-6"
           />

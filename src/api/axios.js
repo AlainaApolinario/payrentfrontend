@@ -4,7 +4,7 @@ import axios from 'axios';
 //const token = localStorage.getItem('access_token'); // adjust if you store the token differently
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8000/api/',
+  baseURL: 'https://backendpayrents.onrender.com',
   //headers: {
   //  'Content-Type': 'application/json',
   //  ...(token && { Authorization: `Bearer ${token}` }),
