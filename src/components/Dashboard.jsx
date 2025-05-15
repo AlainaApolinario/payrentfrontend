@@ -4,7 +4,7 @@ import { FaHome, FaUsers, FaWallet, FaChartBar, FaCheckCircle, FaArrowRight } fr
 import ViewAccounts from './ViewAccounts';
 
 const Dashboard = () => {
-  const [showViewAccounts, setShowViewAccounts] = useState(false);
+  
 
   const [dashboardData, setDashboardData] = useState({
     total_rooms: 0,
@@ -29,10 +29,6 @@ const Dashboard = () => {
 
     fetchDashboardData();
   }, []);
-
-  if (showViewAccounts) {
-    return <ViewAccounts />;
-  }
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
@@ -78,21 +74,6 @@ const Dashboard = () => {
           <FaArrowRight className="text-4xl mb-4" />
           <h2 className="text-xl font-bold mb-2">Tenants Who Paid This Month</h2>
           <p className="text-3xl font-semibold">{dashboardData.tenants_paid_this_month}</p>
-        </div>
-
-        {/* Pending Reports Card */}
-        <div className="bg-white shadow rounded-lg p-6 flex flex-col items-start">
-          <h2 className="text-xl font-bold text-gray-700 mb-2">Pending Reports</h2>
-          <p className="text-3xl font-semibold text-red-500">{dashboardData.pending_reports}</p>
-        </div>
-
-        {/* View Accounts Card */}
-        <div
-          className="bg-white shadow rounded-lg p-6 flex flex-col items-start cursor-pointer hover:bg-gray-50"
-          onClick={() => setShowViewAccounts(true)}
-        >
-          <h2 className="text-xl font-bold text-gray-700 mb-2">View Accounts</h2>
-          <p className="text-l font-semibold text-purple-500">Click Here</p>
         </div>
       </div>
     </div>

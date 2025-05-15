@@ -1,7 +1,14 @@
+// api.js or axios.js
 import axios from 'axios';
 
+//const token = localStorage.getItem('access_token'); // adjust if you store the token differently
+
 const axiosInstance = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api/', // Ensure this matches your backend URL
+  baseURL: 'http://localhost:8000/api/',
+  //headers: {
+  //  'Content-Type': 'application/json',
+  //  ...(token && { Authorization: `Bearer ${token}` }),
+  //},
 });
 
 export default axiosInstance;
