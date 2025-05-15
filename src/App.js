@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard';
 import ViewAccounts from './components/ViewAccounts';
 import Reports from './components/Reports';
 import Notifications from './components/Notifications';
+import RoomTemperature from './components/RoomTemperature';
 
 // Icons
 import {
@@ -58,6 +59,8 @@ function App() {
         return <Reports />;
       case 'notifications':
         return <Notifications />;
+      case 'Room Temperature':
+        return <RoomTemperature />;
       default:
         return <Dashboard />;
     }
@@ -120,6 +123,13 @@ function App() {
                 >
                   <FaBell />
                   {!isSidebarCollapsed && <span>Notifications</span>}
+                </button>
+                <button
+                  onClick={() => setCurrentPage('Room Temperature')}
+                  className="flex items-center space-x-2 hover:bg-blue-600 p-2 rounded w-full text-left"
+                >
+                  <FaBars />
+                  {!isSidebarCollapsed && <span>Room Temperature</span>}
                 </button>
               </nav>
 
