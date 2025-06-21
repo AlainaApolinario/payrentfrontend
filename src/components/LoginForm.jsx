@@ -34,7 +34,7 @@ const LoginForm = ({ onLogin }) => {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post('/api/forgot-password/', {
+      const response = await axiosInstance.post('/api/password-reset/', {
         email: forgotPasswordEmail,
       });
       setForgotPasswordMessage('Password reset link sent to your email.');
@@ -61,6 +61,7 @@ const LoginForm = ({ onLogin }) => {
           <h2 className="text-3xl font-bold text-center text-white mb-6">
             {isForgotPassword ? 'Forgot Password' : 'Login'}
           </h2>
+
           {isForgotPassword ? (
             <form className="space-y-6" onSubmit={handleForgotPassword}>
               <div>
@@ -80,11 +81,13 @@ const LoginForm = ({ onLogin }) => {
                   onChange={(e) => setForgotPasswordEmail(e.target.value)}
                 />
               </div>
+
               {forgotPasswordMessage && (
                 <div className="text-green-500 text-sm">
                   {forgotPasswordMessage}
                 </div>
               )}
+
               <div>
                 <button
                   type="submit"
@@ -93,6 +96,7 @@ const LoginForm = ({ onLogin }) => {
                   Send Reset Link
                 </button>
               </div>
+
               <div className="text-center">
                 <button
                   type="button"
